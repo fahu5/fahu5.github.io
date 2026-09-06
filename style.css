@@ -1,0 +1,1043 @@
+/**
+ * Two-Column Minimalist Academic Stylesheet
+ * Fixed / Sticky Left Sidebar (Profile, Name, Links) + Scrollable Right Content
+ * Strictly content-first, no container boxes or card borders.
+ */
+
+:root {
+  /* Light Theme (Clean Academic Ivory / Paper) */
+  --bg-primary: #ffffff;
+  --bg-subtle: #f9fafb;
+  --text-primary: #111827;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --border: #e5e7eb;
+  --border-light: #f3f4f6;
+  --accent: #1d4ed8;
+  --accent-hover: #1e40af;
+  --badge-bg: #eff6ff;
+  --badge-text: #1d4ed8;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-mono: 'JetBrains Mono', Menlo, Monaco, Consolas, monospace;
+}
+
+[data-theme="dark"] {
+  /* Dark Theme (Scholarly Midnight Slate) */
+  --bg-primary: #0f172a;
+  --bg-subtle: #1e293b;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border: #334155;
+  --border-light: #1e293b;
+  --accent: #60a5fa;
+  --accent-hover: #93c5fd;
+  --badge-bg: #1e293b;
+  --badge-text: #93c5fd;
+}
+
+/* ==========================================================================
+   BASE & RESET
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 75px;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-secondary);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   TOP HEADER NAVIGATION BAR
+   ========================================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+  height: 56px;
+}
+
+.header-inner {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 28px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.header-brand {
+  font-family: var(--font-serif);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  white-space: nowrap;
+  letter-spacing: -0.01em;
+}
+
+.header-brand:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.header-nav-links {
+  display: flex;
+  list-style: none;
+  gap: 16px;
+  align-items: center;
+}
+
+.header-nav-links .nav-link {
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: color 0.15s ease;
+}
+
+.header-nav-links .nav-link:hover,
+.header-nav-links .nav-link.active {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ==========================================================================
+   TWO-COLUMN PAGE GRID
+   ========================================================================== */
+.page-layout {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 56px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 36px 28px 80px 28px;
+  align-items: start;
+}
+
+/* ==========================================================================
+   LEFT SIDEBAR (FIXED / STICKY ON DESKTOP)
+   ========================================================================== */
+.sidebar-col {
+  position: sticky;
+  top: 80px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  padding-right: 12px;
+}
+
+/* Ultra-subtle custom scrollbar for sidebar */
+.sidebar-col::-webkit-scrollbar {
+  width: 4px;
+}
+.sidebar-col::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-col::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.sidebar-profile {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-portrait {
+  width: 100%;
+  max-width: 240px;
+  height: auto;
+  aspect-ratio: 12 / 13;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.sidebar-name {
+  font-family: var(--font-serif);
+  font-size: 1.62rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.25;
+  margin-bottom: 4px;
+  letter-spacing: -0.015em;
+}
+
+.sidebar-role {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 4px;
+  line-height: 1.35;
+}
+
+.sidebar-affiliation {
+  font-size: 0.86rem;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.sidebar-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 16px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.sidebar-meta-item strong {
+  color: var(--text-primary);
+}
+
+.meta-label {
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-right: 4px;
+}
+
+/* Sidebar Links: Icon-Only Row with Official Brand Colors */
+.sidebar-links-list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  padding-top: 4px;
+}
+
+.sidebar-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+/* Icon Badges with Original Brand Backgrounds and Borders */
+.icon-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.icon-badge .icon-brand {
+  flex-shrink: 0;
+  display: block;
+}
+
+.badge-email {
+  background-color: #fef2f2;
+  border: 1px solid #fee2e2;
+}
+
+.badge-cv {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+}
+
+.badge-linkedin {
+  background-color: transparent;
+  border: none;
+}
+
+.badge-scholar {
+  background-color: #eff6ff;
+  border: 1px solid #dbeafe;
+}
+
+.badge-github {
+  background-color: #f3f4f6;
+  border: 1px solid #e5e7eb;
+}
+
+.sidebar-link:hover .icon-badge {
+  transform: translateY(-2px) scale(1.08);
+}
+
+.sidebar-link:hover .badge-email {
+  box-shadow: 0 4px 12px rgba(234, 67, 53, 0.32);
+}
+
+.sidebar-link:hover .badge-cv {
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.32);
+}
+
+.sidebar-link:hover .badge-linkedin {
+  box-shadow: 0 4px 12px rgba(10, 102, 194, 0.4);
+}
+
+.sidebar-link:hover .badge-scholar {
+  box-shadow: 0 4px 12px rgba(66, 133, 244, 0.32);
+}
+
+.sidebar-link:hover .badge-github {
+  box-shadow: 0 4px 12px rgba(36, 41, 47, 0.32);
+}
+/* Research block inside About section */
+.about-research-block {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--border);
+}
+
+.subsection-heading {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+
+/* ==========================================================================
+   RIGHT CONTENT COLUMN (SCROLLABLE)
+   ========================================================================== */
+.content-col {
+  min-width: 0;
+}
+
+.academic-section {
+  margin-bottom: 44px;
+}
+
+/* ==========================================================================
+   ADMISSIONS HIGHLIGHT BANNER (FROSTED GLASS + WARM YELLOW/GOLD)
+   ========================================================================== */
+.phd-glass-banner {
+  background: linear-gradient(135deg, rgba(254, 243, 199, 0.6) 0%, rgba(255, 251, 235, 0.8) 50%, rgba(254, 240, 138, 0.4) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(245, 158, 11, 0.38);
+  border-top: 1px solid rgba(251, 191, 36, 0.6);
+  box-shadow: 0 4px 14px -3px rgba(245, 158, 11, 0.14), inset 0 1px 1px rgba(255, 255, 255, 0.85);
+  border-radius: 8px;
+  padding: 7px 14px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.phd-glass-banner:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px -3px rgba(245, 158, 11, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.95);
+}
+
+.glass-banner-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.glass-dot-pulse {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: #f59e0b;
+  box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+  animation: glass-pulse 2s infinite;
+  flex-shrink: 0;
+}
+
+@keyframes glass-pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(245, 158, 11, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+
+.glass-role-text {
+  font-family: var(--font-sans);
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #92400e;
+  letter-spacing: -0.01em;
+}
+
+.glass-intake-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(254, 243, 199, 0.8);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  border-radius: 14px;
+  padding: 3px 10px;
+  font-size: 0.78rem;
+  color: #78350f;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.glass-intake-label {
+  font-weight: 600;
+  color: #92400e;
+  font-size: 0.76rem;
+}
+
+.glass-intake-term {
+  font-weight: 700;
+  color: #b45309;
+}
+
+[data-theme="dark"] .phd-glass-banner {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.14) 0%, rgba(217, 119, 6, 0.08) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-top: 1px solid rgba(251, 191, 36, 0.45);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(251, 191, 36, 0.2);
+}
+
+[data-theme="dark"] .glass-role-text {
+  color: #fef08a;
+}
+
+[data-theme="dark"] .glass-intake-pill {
+  background: rgba(245, 158, 11, 0.18);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fde68a;
+}
+
+[data-theme="dark"] .glass-intake-label {
+  color: #fde68a;
+}
+
+[data-theme="dark"] .glass-intake-term {
+  color: #fef08a;
+}
+
+.section-heading {
+  font-family: var(--font-serif);
+  font-size: 1.48rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  letter-spacing: -0.01em;
+}
+
+/* Bio Paragraphs */
+.bio-text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.bio-text strong {
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   ACADEMIC LISTS (CLEAN, NO BOXES)
+   ========================================================================== */
+.academic-list {
+  list-style: disc;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.academic-list li {
+  font-size: 0.94rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.academic-list li strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   PUBLICATIONS SECTION (CLASSIC NUMBERED CITATION LIST)
+   ========================================================================== */
+.pub-filter-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.82rem;
+  margin-bottom: 18px;
+  color: var(--text-muted);
+}
+
+.filter-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.72rem;
+}
+
+.pub-filter-btn {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-family: inherit;
+  padding: 0;
+  transition: color 0.15s ease;
+}
+
+.pub-filter-btn:hover {
+  color: var(--accent);
+}
+
+.pub-filter-btn.active {
+  color: var(--text-primary);
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.pub-citation-list {
+  list-style-position: outside;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.pub-card {
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.pub-entry {
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.pub-badge-inline {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 1px 6px;
+  border-radius: 3px;
+  margin-right: 6px;
+  vertical-align: baseline;
+  background-color: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid var(--border);
+}
+
+.pub-paper-title {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.author-self {
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.pub-links-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.pub-links-row a,
+.pub-links-row button {
+  color: var(--accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0;
+}
+
+.pub-links-row a:hover,
+.pub-links-row button:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   EXPERIENCE, EDUCATION, PROJECTS LISTS
+   ========================================================================== */
+.exp-list,
+.edu-list,
+.projects-list {
+  list-style: none;
+  padding-left: 0;
+  gap: 20px;
+}
+
+.item-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.item-primary {
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.item-primary strong {
+  font-weight: 600;
+}
+
+.item-date {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.item-subline {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 4px;
+}
+
+.item-desc {
+  font-size: 0.93rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.edu-sub-list {
+  list-style: disc;
+  padding-left: 18px;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.edu-sub-list li {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* ==========================================================================
+   HONORS & AWARDS LIST (YEAR ALIGNED)
+   ========================================================================== */
+.awards-list {
+  list-style: none;
+  padding-left: 0;
+  gap: 13px;
+}
+
+.awards-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+
+.award-year-tag {
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--accent);
+  width: 48px;
+  flex-shrink: 0;
+}
+
+.award-text {
+  flex: 1;
+  font-size: 0.93rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   SELECTED PROJECTS
+   ========================================================================== */
+.item-meta-tag {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.project-desc {
+  font-size: 0.93rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+
+/* ==========================================================================
+   LEADERSHIP & SERVICE LIST
+   ========================================================================== */
+.leadership-list {
+  list-style: none;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.leadership-list li {
+  line-height: 1.62;
+  font-size: 0.93rem;
+  color: var(--text-secondary);
+}
+
+.item-date-inline {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-right: 6px;
+}
+
+/* Bold colored font for leadership roles with varied colors per user request */
+.leadership-list strong,
+.role-highlight {
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: -0.01em;
+}
+
+/* 1. Leadership Roles: Distinct harmonious colors */
+.role-ambassador {
+  color: #059669 !important; /* Emerald Teal */
+}
+
+.role-director {
+  color: #e11d48 !important; /* Hult Crimson / Rose */
+}
+
+.role-secretary {
+  color: #7c3aed !important; /* Deep Purple */
+}
+
+.role-coconvenor {
+  color: #2563eb !important; /* Royal Blue */
+}
+
+.role-judge {
+  color: #d97706 !important; /* Warm Amber */
+}
+
+.role-lead {
+  color: #0284c7 !important; /* Ocean Cyan */
+}
+
+/* 2. Research Interests: Distinct pillar colors */
+.research-ai {
+  color: #4f46e5; /* Deep Indigo */
+}
+
+.research-cv {
+  color: #2563eb; /* Cobalt Blue */
+}
+
+.research-ds {
+  color: #0d9488; /* Emerald Teal */
+}
+
+.research-bio {
+  color: #e11d48; /* Crimson / Biomedical Rose */
+}
+
+.research-env {
+  color: #16a34a; /* Forest Environmental Green */
+}
+
+.research-health {
+  color: #7c3aed; /* Violet / Health Purple */
+}
+
+/* 3. Selected Projects: Distinct title colors */
+.project-aqua {
+  color: #0284c7; /* Ocean Blue */
+}
+
+.project-hemo {
+  color: #dc2626; /* Biomedical Red */
+}
+
+.project-bookie {
+  color: #7c3aed; /* Library Purple */
+}
+
+.project-scholarly {
+  color: #059669; /* Academic Emerald */
+}
+
+/* 4. Honors & Awards: Distinct accent colors */
+.award-gold {
+  color: #d97706; /* University Gold */
+}
+
+.award-nasa {
+  color: #1d4ed8; /* NASA Blue */
+}
+
+.award-hult {
+  color: #e11d48; /* Hult Rose */
+}
+
+.award-ibcol {
+  color: #0d9488; /* Blockchain Teal */
+}
+
+.award-ucics {
+  color: #6366f1; /* Computing Indigo */
+}
+
+.award-merit {
+  color: #059669; /* Full Scholarship Green */
+}
+
+/* ==========================================================================
+   BIBTEX MODAL & TOAST
+   ========================================================================== */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.modal-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-window {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  width: 100%;
+  max-width: 620px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.modal-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+
+.modal-close-btn:hover {
+  color: var(--text-primary);
+}
+
+.bibtex-code-block {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.5;
+  background-color: var(--border-light);
+  color: var(--text-primary);
+  padding: 14px;
+  border-radius: 4px;
+  overflow-x: auto;
+  white-space: pre;
+  border: 1px solid var(--border);
+  margin-bottom: 14px;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-copy {
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  font-weight: 600;
+  background-color: var(--accent);
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btn-copy:hover {
+  background-color: var(--accent-hover);
+}
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 2000;
+}
+
+.toast.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ========================================================================== */
+@media (max-width: 880px) {
+  .header-inner {
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .header-brand {
+    display: none;
+  }
+
+  .header-nav {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .header-nav-links {
+    gap: 12px;
+  }
+
+  .header-nav-links .nav-link {
+    font-size: 0.82rem;
+  }
+
+  .page-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 24px 20px 60px 20px;
+  }
+
+  .sidebar-col {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+    padding-right: 0;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 28px;
+  }
+
+  .sidebar-portrait {
+    max-width: 220px;
+    height: auto;
+  }
+
+  .phd-glass-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .awards-list li {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .award-year-tag {
+    width: auto;
+  }
+}

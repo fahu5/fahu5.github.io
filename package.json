@@ -1,0 +1,13 @@
+{
+  "name": "phd-academic-website",
+  "version": "1.0.0",
+  "description": "Academic Portfolio and Ph.D. Application Website for Mst. Fahmida Akter",
+  "scripts": {
+    "dev": "vite --host --port 5173",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.2.0"
+  }
+}
