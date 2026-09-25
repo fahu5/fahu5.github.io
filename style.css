@@ -297,6 +297,11 @@ a:hover {
   border: 1px solid #dbeafe;
 }
 
+.badge-orcid {
+  background-color: #f7fee7;
+  border: 1px solid #d9f99d;
+}
+
 .badge-github {
   background-color: #f3f4f6;
   border: 1px solid #e5e7eb;
@@ -322,8 +327,28 @@ a:hover {
   box-shadow: 0 4px 12px rgba(66, 133, 244, 0.32);
 }
 
+.sidebar-link:hover .badge-orcid {
+  box-shadow: 0 4px 12px rgba(166, 206, 57, 0.45);
+}
+
 .sidebar-link:hover .badge-github {
   box-shadow: 0 4px 12px rgba(36, 41, 47, 0.32);
+}
+
+.meta-orcid-link {
+  color: inherit;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: -0.01em;
+  text-decoration: underline;
+  text-decoration-color: rgba(166, 206, 57, 0.85);
+  text-underline-offset: 2px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.meta-orcid-link:hover {
+  color: #65a30d;
+  text-decoration-color: #65a30d;
 }
 /* Research block inside About section */
 .about-research-block {
@@ -462,6 +487,16 @@ a:hover {
 
 [data-theme="dark"] .glass-intake-term {
   color: #fef08a;
+}
+
+[data-theme="dark"] .badge-orcid {
+  background-color: rgba(166, 206, 57, 0.12);
+  border-color: rgba(166, 206, 57, 0.3);
+}
+
+[data-theme="dark"] .meta-orcid-link:hover {
+  color: #bef264;
+  text-decoration-color: #bef264;
 }
 
 .section-heading {
